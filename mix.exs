@@ -11,7 +11,8 @@ defmodule ExPrometheusIo.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :inets],
+     mod: {ExPrometheusIo, []}]
   end
 
   defp deps do
