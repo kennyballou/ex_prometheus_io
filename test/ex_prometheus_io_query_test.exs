@@ -17,7 +17,7 @@ defmodule ExPrometheusIo.QueryTest do
   end
 
   test "query_params builds correct series query" do
-    assert "match[]=up" == query_params(:series, ["up"])
+    assert "match[]=up" == query_params(:series, {["up"]})
   end
 
   test "query endpoint" do
@@ -42,7 +42,7 @@ defmodule ExPrometheusIo.QueryTest do
                     <> "&end=#{cur_time}"
                     <> "&step=1"
         == build_url(:range, {"up", cur_time - 5, cur_time, 1})
-    assert base_url <> "series?match[]=up" == build_url(:series, ["up"])
+    assert base_url <> "series?match[]=up" == build_url(:series, {["up"]})
   end
 
   defp prom_host, do: Application.fetch_env!(:ex_prometheus_io, :hostname)

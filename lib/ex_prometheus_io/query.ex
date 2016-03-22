@@ -1,24 +1,10 @@
 defmodule ExPrometheusIo.Query do
 
-  def process(:query, query, query_ref, owner) do
-    build_url(:query, query)
-    |> fetch_json()
-    |> Poison.decode
-    |> send_results(query_ref, owner)
-  end
-
-  def process(:range, query, start_ts, end_ts, step, query_ref, owner) do
-    build_url(:range, {query, start_ts, end_ts, step})
-    |> fetch_json()
-    |> Poison.decode
-    |> send_results(query_ref, owner)
-  end
-
-  def process(:series, matches, query_ref, owner) do
-    build_url(:series, matches)
-    |> fetch_json()
-    |> Poison.decode
-    |> send_results(query_ref, owner)
+  def process(query, query_opts, query_ref, owner) do
+     build_url(query, query_opts)
+     |> fetch_json()
+     |> Poison.decode
+     |> send_results(query_ref, owner)
   end
 
   defp fetch_json(uri) do
@@ -48,7 +34,7 @@ defmodule ExPrometheusIo.Query do
     <> "&step=#{step}"
   end
 
-  def query_params(:series, matches) when is_list(matches) do
+  def query_params(:series, {matches}) when is_list(matches) do
     matches
     |> Enum.map(fn(match) -> "match[]=#{match}" end)
     |> Enum.join("&")
