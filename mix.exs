@@ -5,7 +5,7 @@ defmodule ExPrometheusIo.Mixfile do
     [app: :ex_prometheus_io,
      description: description,
      package: package,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
