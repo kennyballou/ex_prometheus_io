@@ -7,25 +7,25 @@ defmodule ExPrometheusIo do
 
   def query(query, _opts \\ []) do
     query_opts = [query]
-    spawn_query(:fetch_query, query_opts)
+    spawn_query(:query, query_opts)
   end
 
   def range(query, start_ts, end_ts, step, _opts \\ []) do
     query_opts = [query, start_ts, end_ts, step]
-    spawn_query(:fetch_range, query_opts)
+    spawn_query(:range, query_opts)
   end
 
   def series(matches, _opts \\ []) do
-    spawn_query(:fetch_series, [matches])
+    spawn_query(:series, [matches])
   end
 
-  defp spawn_query(fetch, query_opts, _opts \\ []) do
+  defp spawn_query(query, query_opts, _opts \\ []) do
     query_ref = make_ref()
-    query_opts = query_opts ++ [query_ref, self()]
+    query_opts = [query | query_opts] ++ [query_ref, self()]
     {:ok, pid} = Task.Supervisor.start_child(
       ExPrometheusIo.QuerySupervisor,
       ExPrometheusIo.Query,
-      fetch,
+      :process,
       query_opts)
     {pid, query_ref}
   end
