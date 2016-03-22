@@ -15,7 +15,7 @@ defmodule ExPrometheusIo do
     spawn_query(:range, query_opts)
   end
 
-  def series(matches, _opts \\ []) do
+  def series(matches, _opts \\ []) when is_list(matches) do
     spawn_query(:series, [matches])
   end
 
