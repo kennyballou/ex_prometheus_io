@@ -1,5 +1,5 @@
 defmodule ExPrometheusIoTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest ExPrometheusIo
 
   test "can query for up data" do

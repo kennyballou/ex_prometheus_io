@@ -1,5 +1,5 @@
 defmodule ExPrometheusIo.QueryTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   import ExPrometheusIo.Query, only: [query_params: 2,
                                       endpoint: 1,
