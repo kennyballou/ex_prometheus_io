@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "__name__": "up",
+      "instance": "prometheus:9090",
+      "job": "federate"
+    },
+    {
+      "__name__": "up",
+      "instance": "dbhost01",
+      "job": "database-sys"
+    },
+    {
+      "__name__": "up",
+      "instance": "dbhost03",
+      "job": "database-sys"
+    }
+  ]
+}
