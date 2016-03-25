@@ -7,6 +7,7 @@ defmodule ExPrometheusIo.Mixfile do
      package: package,
      version: "0.0.2",
      elixir: "~> 1.2",
+     elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]
@@ -20,6 +21,9 @@ defmodule ExPrometheusIo.Mixfile do
   defp deps do
     [{:poison, "~> 1.5"}]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp description do
     "Prometheus.io Elixir client API library"
