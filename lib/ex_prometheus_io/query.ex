@@ -7,8 +7,9 @@ defmodule ExPrometheusIo.Query do
      |> send_results(query_ref, owner)
   end
 
+  @http Application.get_env(:ex_prometheus_io, :http_client) || :httpc
   defp fetch_json(uri) do
-    {:ok, {_, _, body}} = :httpc.request(uri |> String.to_char_list())
+    {:ok, {_, _, body}} = @http.request(uri |> String.to_char_list())
     body
   end
 
