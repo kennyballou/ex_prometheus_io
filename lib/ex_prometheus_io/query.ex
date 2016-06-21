@@ -2,6 +2,7 @@ defmodule ExPrometheusIo.Query do
 
   def process(query, query_opts, query_ref, owner) do
      build_url(query, query_opts)
+     |> URI.encode
      |> fetch_json()
      |> Poison.decode
      |> send_results(query_ref, owner)
