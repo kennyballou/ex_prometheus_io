@@ -10,6 +10,7 @@ defmodule ExPrometheusIo.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     dialyzer: [plt_add_apps: [:inets], plt_add_deps: :transitive],
      deps: deps]
   end
 
@@ -20,7 +21,8 @@ defmodule ExPrometheusIo.Mixfile do
 
   defp deps do
     [{:poison, "~> 2.2 or ~> 1.5"},
-     {:ex_doc, "~> 0.13.0", only: :dev}]
+     {:ex_doc, "~> 0.13.0", only: :dev},
+     {:dialyxir, "~> 0.3.5", only: :dev}]
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]

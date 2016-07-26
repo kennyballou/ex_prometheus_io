@@ -5,3 +5,7 @@ elixir:
 otp_release:
   - 18.3
   - 19.0
+
+script:
+  - MIX_ENV=dev mix do deps.get, dialyzer.plt, dialyzer
+  - MIX_ENV=test mix do deps.get, test
