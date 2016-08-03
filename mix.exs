@@ -19,7 +19,8 @@ defmodule ExPrometheusIo.Mixfile do
   end
 
   defp deps do
-    [{:poison, "~> 2.2 or ~> 1.5"}]
+    [{:poison, "~> 2.2 or ~> 1.5"},
+     {:ex_doc, "~> 0.13.0", only: :dev}]
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
