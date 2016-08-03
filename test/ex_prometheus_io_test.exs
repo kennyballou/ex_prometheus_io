@@ -21,6 +21,7 @@ defmodule ExPrometheusIoTest do
   test "can query up series data" do
     {pid, ref} = ExPrometheusIo.series(["up"])
     assert_receive {:prometheus_results, ^ref, results}
+    assert is_list(results)
     refute Process.alive?(pid)
   end
 
